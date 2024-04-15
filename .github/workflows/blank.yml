@@ -13,15 +13,16 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        hostnamectl
-        touch foobaz.txt
-        ls
-    
+    - run: hostnamectl
+    - run: pwd
+    - run: touch foobaz.txt
+    - run: touch /mnt/yeah.txt
+    - run: ls /mnt
+
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        hostnamectl
-        ls
+    - run: hostnamectl
+    - run: pwd
+    - run: ls /mnt
