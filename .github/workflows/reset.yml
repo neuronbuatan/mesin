@@ -1,6 +1,7 @@
 name: reset
 
 on:
+  workflow_call:
   push:
   workflow_run:
     workflows: [utama]
