@@ -16,15 +16,30 @@ jobs:
     - run: df -ah
     - run: hostnamectl
     - run: pwd
-    - run: touch foobaz.txt
-    - run: sudo touch /mnt/yeah.txt
-    - run: sudo ls /mnt
+    - run: sudo mkdir -p /mnt/mydir
+    - run: sudo touch /mnt/mydir/foobar.txt
+    # Cached
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          /mnt/mydir
+        key: ${{ runner.os }}-build-${{ hashFiles('**/lockfiles') }} # Change the key based on your requirements
 
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
     steps:
+    # Restore cached directories at the beginning of the job
+    - name: Restore dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          /mnt/mydir
+        key: ${{ runner.os }}-build-${{ hashFiles('**/lockfiles') }} # Match the key used in the build job
+    # Restored
     - run: df -ah
     - run: hostnamectl
     - run: pwd
     - run: sudo ls /mnt
+    - run: sudo ls /mnt/mydir
