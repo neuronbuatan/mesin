@@ -22,6 +22,7 @@ jobs:
           path: /home/runner
           
   _1:
+    needs: _0
     runs-on: ubuntu-latest
     steps:
       - name: download
@@ -43,6 +44,7 @@ jobs:
           name: tmp
           path: /home/runner
   _2:
+    needs: _1
     runs-on: ubuntu-latest
     steps:
       - name: download
