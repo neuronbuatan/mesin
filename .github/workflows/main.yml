@@ -1,7 +1,6 @@
-name: mesin
+name: main
 
 on:
-  push:
   workflow_run:
       workflows: [reset]
       types:
