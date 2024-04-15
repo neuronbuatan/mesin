@@ -13,6 +13,7 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
+    - run: df -ah
     - run: hostnamectl
     - run: pwd
     - run: touch foobaz.txt
@@ -23,6 +24,7 @@ jobs:
     needs: first-job
     runs-on: ubuntu-latest
     steps:
+    - run: df -ah
     - run: hostnamectl
     - run: pwd
     - run: sudo ls /mnt
