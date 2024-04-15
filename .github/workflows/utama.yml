@@ -11,6 +11,7 @@ jobs:
         shell: bash
         run: |
           echo "implementasikan unduhan spesial di sini"
+      - run: echo "Current run ID is ${{ github.run_id }}"
       - name: loop
         continue-on-error: true 
         shell: bash
