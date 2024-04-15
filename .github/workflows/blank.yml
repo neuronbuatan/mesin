@@ -20,7 +20,7 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: tmp
+          name: _0
           path: ~/tmp
   _1:
     needs: _0
@@ -29,7 +29,7 @@ jobs:
       - name: download
         uses: actions/download-artifact@v4
         with:
-          name: tmp
+          name: _0
           path: ~/tmp
       - name: loop
         continue-on-error: true 
@@ -42,7 +42,7 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: tmp
+          name: _1
           path: ~/tmp
   _2:
     needs: _1
@@ -51,7 +51,7 @@ jobs:
       - name: download
         uses: actions/download-artifact@v4
         with:
-          name: tmp
+          name: _1
           path: ~/tmp
       - name: loop
         continue-on-error: true 
