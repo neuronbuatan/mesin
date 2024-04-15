@@ -1,64 +1,61 @@
-name: Share data between jobs
+name: pipe
 
 on: [push]
 
 jobs:
-  myjob:
-    timeout-minutes: 361
+  _0:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: homework_final
-      - name: Print the final result
+      - name: loop
+        continue-on-error: true 
         shell: bash
         run: |
-          value=`cat math-homework.txt`
-          echo The result is $value
+          hostnamectl
+          echo "Setting up VM"
+          pwd
+          touch hello_world1.txt
+          ls ~
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: tmp
+          path: /home/runner
           
-  # job_1:
-  #   name: Add 3 and 7
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - shell: bash
-  #       run: |
-  #         expr 3 + 7 > math-homework.txt
-  #     - name: Upload math result for job 1
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: homework_pre
-  #         path: math-homework.txt
-
-  # job_2:
-  #   name: Multiply by 9
-  #   needs: job_1
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Download math result for job 1
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: homework_pre
-  #     - shell: bash
-  #       run: |
-  #         value=`cat math-homework.txt`
-  #         expr $value \* 9 > math-homework.txt
-  #     - name: Upload math result for job 2
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: homework_final
-  #         path: math-homework.txt
-
-  # job_3:
-  #   name: Display results
-  #   needs: job_2
-  #   runs-on: macOS-latest
-  #   steps:
-  #     - name: Download math result for job 2
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: homework_final
-  #     - name: Print the final result
-  #       shell: bash
-  #       run: |
-  #         value=`cat math-homework.txt`
-  #         echo The result is $value
+  _1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download
+        uses: actions/download-artifact@v4
+        with:
+          name: tmp
+      - name: loop
+        continue-on-error: true 
+        shell: bash
+        run: |
+          hostnamectl
+          echo "Setting up VM"
+          pwd
+          touch hello_world2.txt
+          ls ~
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: tmp
+          path: /home/runner
+  _2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download
+        uses: actions/download-artifact@v4
+        with:
+          name: tmp
+      - name: loop
+        continue-on-error: true 
+        shell: bash
+        run: |
+          hostnamectl
+          echo "Setting up VM"
+          pwd
+          touch hello_world3.txt
+          ls ~
+          
