@@ -16,8 +16,8 @@ jobs:
     - run: hostnamectl
     - run: pwd
     - run: touch foobaz.txt
-    - run: touch /mnt/yeah.txt
-    - run: ls /mnt
+    - run: sudo touch /mnt/yeah.txt
+    - run: sudo ls /mnt
 
   second-job:
     needs: first-job
@@ -25,4 +25,4 @@ jobs:
     steps:
     - run: hostnamectl
     - run: pwd
-    - run: ls /mnt
+    - run: sudo ls /mnt
