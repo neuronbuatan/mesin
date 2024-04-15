@@ -1,6 +1,11 @@
 name: mesin
 
-on: [push]
+on:
+  push:
+  workflow_run:
+      workflows: [reset]
+      types:
+        - completed
 
 jobs:
   head:
@@ -69,8 +74,4 @@ jobs:
         shell: bash
         run: |
           echo "implementasikan unggahan spesial di sini"
-      - name: goto head
-        shell: bash
-        run: |
-          echo "implementasikan goto head di sini"
           
