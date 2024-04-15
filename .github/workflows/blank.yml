@@ -1,9 +1,9 @@
-name: pipe
+name: mesin
 
 on: [push]
 
 jobs:
-  _0:
+  head:
     runs-on: ubuntu-latest
     steps:
       - name: loop
@@ -20,16 +20,16 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: _0
+          name: head
           path: ~/tmp
-  _1:
-    needs: _0
+  _0:
+    needs: head
     runs-on: ubuntu-latest
     steps:
       - name: download
         uses: actions/download-artifact@v4
         with:
-          name: _0
+          name: head
           path: ~/tmp
       - name: loop
         continue-on-error: true 
@@ -42,16 +42,16 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: _1
+          name: _0
           path: ~/tmp
-  _2:
-    needs: _1
+  tail:
+    needs: _0
     runs-on: ubuntu-latest
     steps:
       - name: download
         uses: actions/download-artifact@v4
         with:
-          name: _1
+          name: _0
           path: ~/tmp
       - name: loop
         continue-on-error: true 
