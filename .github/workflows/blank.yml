@@ -6,6 +6,10 @@ jobs:
   head:
     runs-on: ubuntu-latest
     steps:
+      - name: download
+        shell: bash
+        run: |
+          echo "implementasikan unduhan spesial di sini"
       - name: loop
         continue-on-error: true 
         shell: bash
@@ -61,4 +65,8 @@ jobs:
           pwd
           touch ~/tmp/hello_world3.txt
           ls ~/tmp
+      - name: upload
+        shell: bash
+        run: |
+          echo "implementasikan unggahan spesial di sini"
           
