@@ -1,0 +1,15 @@
+name: reset
+
+on:
+  push:
+  workflow_run:
+    workflows: [main]
+    types:
+      - completed
+
+jobs:
+  _null:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 3
+      - run: echo "reset completed!"
