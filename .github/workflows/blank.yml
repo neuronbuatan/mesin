@@ -34,13 +34,13 @@ jobs:
         run: |
           hostnamectl
           pwd
-          touch ~/tmp/hello_world2.txt
-          ls ~/tmp
+          touch hello_world2.txt
+          ls ~
       - name: upload
         uses: actions/upload-artifact@v4
         with:
           name: tmp
-          path: ~/tmp
+          path: ~/
   _2:
     needs: _1
     runs-on: ubuntu-latest
@@ -55,6 +55,6 @@ jobs:
         run: |
           hostnamectl
           pwd
-          touch ~/tmp/hello_world3.txt
-          ls ~/tmp
+          touch hello_world3.txt
+          ls ~
           
