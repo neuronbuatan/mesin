@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   myjob:
+    timeout-minutes: 361
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
